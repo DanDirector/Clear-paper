@@ -14,8 +14,11 @@ public class Connect {
 
         if (con==null){
             try {
+                Class.forName("com.mysql.jdbc.Driver");
                 con= DriverManager.getConnection("jdbc:mysql://localhost:3306/clean_paper", "root", "qawsed");
             } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }

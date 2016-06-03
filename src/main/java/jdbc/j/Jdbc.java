@@ -9,15 +9,12 @@ import java.util.List;
  */
 public class Jdbc {
     public static List<String> showAll() {
-        Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
         List<String> list = new ArrayList();
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/clean_paper", "root", "qawsed");
-            statement = connection.createStatement();
+            statement = Connect.getConnection().createStatement();
 
             statement.execute("SELECT * FROM thing");
 
@@ -30,14 +27,10 @@ public class Jdbc {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        finally {
+        } finally {
                 try {
-                    if (connection != null) {
-                        connection.close();
+                    if (Connect.getConnection() != null) {
+                        Connect.getConnection().close();
                     }
                     if (statement != null)
                         statement.close();

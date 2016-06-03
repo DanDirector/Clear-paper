@@ -20,7 +20,7 @@
     }
 %>
 </br>
-<%for (String s: Jdbc.con()) {
+<%for (String s: Jdbc.showAll()) {
 %>
 <%=s%>
 <%
