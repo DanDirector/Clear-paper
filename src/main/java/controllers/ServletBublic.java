@@ -1,5 +1,7 @@
 package controllers;
 
+import jdbc.j.Jdbc;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +29,7 @@ public class ServletBublic extends HttpServlet {
         String s =(String) request.getParameter("Bublic");
         List<String> stringList = (List) request.getSession().getAttribute("Bublic");
         stringList.add(s);
+        jdbc.j.Jdbc.createThing(s);
         response.sendRedirect("index.jsp");
     }
 

@@ -29,9 +29,6 @@ public class Jdbc {
             e.printStackTrace();
         } finally {
                 try {
-                    if (Connect.getConnection() != null) {
-                        Connect.getConnection().close();
-                    }
                     if (statement != null)
                         statement.close();
                     if (resultSet != null)
@@ -44,6 +41,12 @@ public class Jdbc {
     }
 
     public static void createThing(String s){
+        try {
+            Statement statement = Connect.getConnection().createStatement();
+            statement.execute("INSERT INTO thing (`name`) VALUES ('" + s + "')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }
